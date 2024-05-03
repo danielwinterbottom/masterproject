@@ -150,7 +150,7 @@ history = model.fit(
     X, y,
     sample_weight=w,
     validation_data=(X, y, w),
-    epochs=1,#10,
+    epochs=10,
     batch_size=100,
 )
 
