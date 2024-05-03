@@ -179,7 +179,7 @@ def Plot2DHistAfter(X, y, re_weights, varx, vary, lim_min_x, lim_max_x, lim_min_
         weights = re_weights[(y == label)]
 
         # Create a 2D histogram for the current label
-        if label == 2:
+        if i == 2:
             heatmap, xedges, yedges = np.histogram2d(Varx, Vary, bins=40, 
                                                       range=[[lim_min_x, lim_max_x], [lim_min_y, lim_max_y]],
                                                       weights=weights)
