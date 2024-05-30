@@ -78,7 +78,7 @@ def read_root_in_chunks(filename, json_file, output_dir='dataframes', nchunks=10
 
 def find_files_ending_with(directory, suffix):
     """Find all files in the given directory that end with the specified suffix."""
-    return [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith(suffix)]
+    return [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith(suffix) and not 'combined_chunk' in f]
 
 def load_and_concatenate_dataframes(file_paths):
     """Load and concatenate pandas DataFrames from a list of file paths."""
@@ -87,7 +87,8 @@ def load_and_concatenate_dataframes(file_paths):
         with open(file_path, 'rb') as file:
             df = pd.read_pickle(file)
             dataframes.append(df)
-    return pd.concat(dataframes, ignore_index=True)
+    df = pd.concat(dataframes, ignore_index=True)       
+    return df
 
 
 background_samples = [
@@ -128,7 +129,7 @@ for i in range(nchunks):
     # Load and concatenate all the DataFrames
     combined_df = load_and_concatenate_dataframes(file_paths)
     # Shuffle the combined DataFrame
-    combined_df = combined_df.sample().reset_index(drop=True)
+    combined_df = combined_df.sample(frac=1).reset_index(drop=True)
 
     # Save the shuffled DataFrame to a pickle file
     combined_df.to_pickle(output_file)
