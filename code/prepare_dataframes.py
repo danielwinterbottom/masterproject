@@ -3,8 +3,8 @@ import pandas as pd
 import json
 import os
 
-variables = ['Z_mass', 'Z_pt', 'wt', 'n_jets', 'n_deepbjets', 'mjj', 'jdeta', 'jdphi', 'dijetpt', 'jpt_1', 'jpt_2', 'jpt_3'] 
-json_file = '/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/params_UL_2018.json'
+variables = ['Z_mass', 'Z_pt', 'wt', 'n_jets', 'n_deepbjets', 'mjj', 'jdeta', 'jdphi', 'dijetpt', 'jpt_1', 'jpt_2', 'jpt_3','U1','U2'] 
+json_file = '/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/params_UL_2018.json'
 output_dir='dataframes'
 nchunks=10
 verbosity = 2
@@ -92,17 +92,17 @@ def load_and_concatenate_dataframes(file_paths):
 
 
 background_samples = [
-                     "/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/Tbar-tW_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WZTo1L3Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/T-tW_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/W4JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/W1JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/EWKZ2Jets_ZToLL_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/EWKWMinus2Jets_WToLNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WGToLNuG_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/EWKWPlus2Jets_WToLNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WWTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WZTo3LNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WZTo1L1Nu2Q_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WJetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/Tbar-t_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WWTo1L1Nu2Q_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/W3JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/WZTo2Q2L_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/W2JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/ZZTo4L_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/T-t_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/ZZTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/TTTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/TTToHadronic_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/TTToSemiLeptonic_zmm_2018.root"
+                     "/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/Tbar-tW_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WZTo1L3Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/T-tW_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/W4JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/W1JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/EWKZ2Jets_ZToLL_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/EWKWMinus2Jets_WToLNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WGToLNuG_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/EWKWPlus2Jets_WToLNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WWTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WZTo3LNu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WZTo1L1Nu2Q_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WJetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/Tbar-t_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WWTo1L1Nu2Q_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/W3JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/WZTo2Q2L_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/W2JetsToLNu-LO_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/ZZTo4L_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/T-t_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/ZZTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/TTTo2L2Nu_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/TTToHadronic_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/TTToSemiLeptonic_zmm_2018.root"
                      ]
 MC_samples=[
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DY2JetsToLL-LO_zmm_2018.root",
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DYJetsToLL_M-10to50-LO_zmm_2018.root",
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DY3JetsToLL-LO_zmm_2018.root",
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DY4JetsToLL-LO_zmm_2018.root",
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DYJetsToLL-LO_zmm_2018.root",
-"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DYJetsToLL-LO-ext1_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/DY1JetsToLL-LO_zmm_2018.root"]
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DY2JetsToLL-LO_zmm_2018.root",
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DYJetsToLL_M-10to50-LO_zmm_2018.root",
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DY3JetsToLL-LO_zmm_2018.root",
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DY4JetsToLL-LO_zmm_2018.root",
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DYJetsToLL-LO_zmm_2018.root",
+"/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DYJetsToLL-LO-ext1_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/DY1JetsToLL-LO_zmm_2018.root"]
 
-data_samples=["/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/SingleMuonC_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/SingleMuonA_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/SingleMuonB_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v3/SingleMuonD_zmm_2018.root"]
+data_samples=["/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/SingleMuonC_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/SingleMuonA_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/SingleMuonB_zmm_2018.root","/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/SingleMuonD_zmm_2018.root"]
 
 # first process and save each sample as a dataframe split into chunks
 

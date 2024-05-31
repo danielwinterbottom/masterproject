@@ -37,4 +37,8 @@ for i in range(10):
     outname = file_name.replace('.pkl','.pdf').replace('combined','Z_mass_check_combined')
     plot_by_label(df, outname=outname, var='Z_mass')
     
-    
+    outname = file_name.replace('.pkl','.pdf').replace('combined','U1_check_combined')
+    plot_by_label(df, outname=outname, var='U1')
+
+    outname = file_name.replace('.pkl','.pdf').replace('combined','U2_check_combined')
+    plot_by_label(df, outname=outname, var='U2')
