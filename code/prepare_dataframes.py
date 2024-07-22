@@ -5,8 +5,8 @@ import os
 
 variables = ['Z_mass', 'Z_pt', 'wt', 'n_jets', 'n_deepbjets', 'mjj', 'jdeta', 'jdphi', 'dijetpt', 'jpt_1', 'jpt_2', 'jpt_3','U1','U2'] 
 json_file = '/vols/cms/dw515/outputs/MRes/MRes_2024_Run2018_v4/params_UL_2018.json'
-output_dir='dataframes'
-nchunks=10
+output_dir='dataframes_v2'
+nchunks=20
 verbosity = 2
 
 def read_json(file_path):
@@ -41,6 +41,8 @@ def read_root_in_chunks(filename, json_file, output_dir='dataframes', nchunks=10
 
         # Read the current chunk into a dataframe
         df = tree.arrays(variables, library="pd", entry_start=start, entry_stop=stop) 
+        df = df.astype({col: 'float32' if df[col].dtype == 'float64' else 'int8' if df[col].dtype == 'int64' else 'uint8' if df[col].dtype == 'uint32' else df[col].dtype for col in df.columns})
+        print(df.dtypes)
 
         if isMC:
             # for MC events adjust weights so that we scale everything to the cross-section * luminosity
