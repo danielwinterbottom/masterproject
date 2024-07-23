@@ -39,8 +39,6 @@ if train:
                 if n_chunks > 0 and len(dataframes) >= n_chunks: break
     df = pd.concat(dataframes, ignore_index=True)
 
-    print('!!!!!!', len(df))
-
     columns = df.columns
     train_df, test_df = train_test_split(df, test_size=0.3, random_state=42,shuffle=True)
     del df
